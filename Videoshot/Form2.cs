@@ -130,7 +130,7 @@ namespace Videoshot
                 if (Directory.Exists(destDir))
                 {
                     File.Copy(image, destDir + "//" + f.Name);
-                    MessageBox.Show("图片以及复制到:" + destDir + "//" + f.Name, "操作成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("图片以及复制到:" + destDir + "\\" + f.Name, "操作成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
                 else {

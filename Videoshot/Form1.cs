@@ -15,9 +15,13 @@ namespace Videoshot
 {
     public partial class Form1 : Form
     {
-        public const string FFMPEG = "D:\\Program Files\\FreeTime\\FormatFactory\\FFModules\\Encoder\\ffmpeg.exe ";
+        //public const string FFMPEG = "D:\\Program Files\\FreeTime\\FormatFactory\\FFModules\\Encoder\\ffmpeg.exe ";
+        public const string FFMPEG = "\\Encoder\\ffmpeg.exe ";
+
        // public const string FFARG = " -i {0}  -y -f image2  -ss {1} -vframes {2}   -loop  -s 400x300  {1}-%2d.jpg ";
         public const string FFARG = " -ss {1}  -i {0}  -y -f image2 -vframes 1 -an  {2}  {3}.jpg ";
+
+        public const string VIDEO_TYPE = "*.avi|*.mp4|*.3gp|*.mpg|*.mpeg|*.dvd|*.flv|*.mov|*.wmv|*.ts|*.mkv|*.f4v|*.hlv";
 
         public Form1()
         {
@@ -153,7 +157,8 @@ namespace Videoshot
             {
                 mAll += 1;
                 mRunning += 1;
-                extractImage(this.textBoxPath.Text.Trim(), startTime + i * interval, displaySize, savePath + "_" + i);
+                int position = startTime + i * interval;
+                extractImage(this.textBoxPath.Text.Trim(), position, displaySize, savePath + "_" + i + "_" + position);
             }
             
         }
@@ -166,7 +171,7 @@ namespace Videoshot
             System.Diagnostics.Process p = new System.Diagnostics.Process();
             p.StartInfo.CreateNoWindow = true;
 
-            p.StartInfo.FileName = FFMPEG;//需要启动的程序名 
+            p.StartInfo.FileName = Directory.GetCurrentDirectory() + FFMPEG;//需要启动的程序名 
             p.StartInfo.Arguments = String.Format(FFARG, videoPath, startTime,size,outFileName);//启动参数
             p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             
@@ -210,7 +215,7 @@ namespace Videoshot
         private void buttonSelectFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Multiselect = true;
+            fileDialog.Multiselect = false;
             fileDialog.Title = "请选择文件";
             fileDialog.Filter = "所有文件(*.*)|*.*";
             if (fileDialog.ShowDialog() == DialogResult.OK)
@@ -309,8 +314,8 @@ namespace Videoshot
 
             foreach (FileInfo file in di.GetFiles())
             {
-                if (file != null)
-                {                   
+                if (file != null && VIDEO_TYPE.Contains(file.Extension.ToLowerInvariant()))
+                {
                     //Console.Write("\n" + file.Name);
                     sFiles.Add(file.FullName);
                     string name = file.Name;
@@ -331,7 +336,8 @@ namespace Videoshot
                     for (int i = 0; i < num; i++) {
                         mAll += 1;
                         mRunning += 1;
-                        extractImage(file.FullName, startTime + i * interval, displaySize, directory + "\\" + name + "_" + i);
+                        int position = startTime + i * interval;
+                        extractImage(file.FullName, position, displaySize, directory + "\\" + name + "_" + i + "_" + position);
                     }
                    
                 }
@@ -341,46 +347,6 @@ namespace Videoshot
         }
 
         List<String> sFiles = new List<String>();
-
-         
-        void ListDirectoriesAndFiles(FileSystemInfo[] FSInfo, string SearchString)
-        {
-            // Check the parameters.
-            if (FSInfo == null)
-            {
-                throw new ArgumentNullException("FSInfo");
-            }
-            if (SearchString == null || SearchString.Length == 0)
-            {
-                throw new ArgumentNullException("SearchString");
-            }
-
-            // Iterate through each item.
-            foreach (FileSystemInfo i in FSInfo)
-            {
-                // Check to see if this is a DirectoryInfo object.
-                if (i is DirectoryInfo)
-                {
-                    // Add one to the directory count.
-                    //directories++;
-
-                    // Cast the object to a DirectoryInfo object.
-                    DirectoryInfo dInfo = (DirectoryInfo)i;
-
-                    // Iterate through all sub-directories.
-                    ListDirectoriesAndFiles(dInfo.GetFileSystemInfos(SearchString), SearchString);
-                }
-                // Check to see if this is a FileInfo object.
-                else if (i is FileInfo)
-                {
-                    // Add one to the file count.
-                    //files++;
-                  //  files.Add(i);
-
-                }
-
-            }
-        }
 
         public static bool IsInt(string StrSource)
         {
