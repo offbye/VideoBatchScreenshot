@@ -220,74 +220,7 @@ namespace Videoshot
                 //MessageBox.Show("已选择文件:" + file, "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            //string[] Drives = Directory.GetLogicalDrives();
-            DriveInfo[] Drives = DriveInfo.GetDrives();//得到本机上所有驱动器
-            TreeNode[] cRoot = new TreeNode[Drives.Length];
-            //LocalView.ImageList = imageList1;
-            foreach (DriveInfo di in Drives)
-            {
-                if (di.IsReady)//如果驱动器已经准备好，即驱动器可以使用，不是dvd，A:\等盘
-                {
-                    TreeNode DriveNode = new TreeNode(di.Name);
-                    treeView1.Nodes.Add(DriveNode);
-                    getSubNode(DriveNode, true);//得到子节点
-                }
-
-            }
-        }
-
-        private void getSubNode(TreeNode PathName, bool isEnd)
-        {
-            if (!isEnd)
-                return; //退出
-            TreeNode curNode;
-            FileSystemInfo[] subDir = null;
-            FileInfo[] subFiles = null;
-            DirectoryInfo curDir = new DirectoryInfo(PathName.FullPath);
-            try
-            {
-                subDir = curDir.GetFileSystemInfos();//目录下所有的文件和目录
-                //subFiles = curDir.GetFiles();
-                foreach (FileSystemInfo d in subDir)
-                {
-                    if (d.Attributes != (FileAttributes.Hidden | FileAttributes.System))//如果文件或者目录属性是隐藏和系统就不挂接到节点上
-                    {
-                        curNode = new TreeNode(d.Name);
-                        PathName.Nodes.Add(curNode);
-                        //getSubNode(curNode, false);
-                        curNode.ImageIndex = 0;//treeview控件已经和一个imagelist控件关联了，所以可以加载imagelist内的一个图标
-                    }
-
-                }
-            }
-            catch (System.UnauthorizedAccessException e)//捕捉错误
-            {
-
-            }
-        }
-
-        private void treeView1_AfterExpand(object sender, TreeViewEventArgs e)//点击treeview上的+号时触发
-        {
-            try
-            {
-                foreach (TreeNode tn in e.Node.Nodes)
-                {
-                    if (Directory.Exists(tn.FullPath))//判断路径是否是一个目录，文件的话就不展开了
-                        getSubNode(tn, true);
-                }
-            }
-            catch { ;}//错误未处理
-        }
-
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
-        }
-
-       
+               
         private void buttonBatchShot_Click(object sender, EventArgs e)
         {
             int startTime = 10;
@@ -470,6 +403,10 @@ namespace Videoshot
             return Convert.ToInt32(str[0]) * 3600 + Convert.ToInt32(str[1]) * 60 + Convert.ToInt32(str[0]);
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            new Form2().Show();
+        }
 
     }
 }

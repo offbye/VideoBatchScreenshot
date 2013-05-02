@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonSelectSavePath = new System.Windows.Forms.Button();
             this.labelProcessStatus = new System.Windows.Forms.Label();
             this.textBoxDisplaySize = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -36,6 +37,7 @@
             this.buttonSelectFile = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxNum = new System.Windows.Forms.TextBox();
@@ -43,14 +45,11 @@
             this.textBoxStart = new System.Windows.Forms.TextBox();
             this.buttonShot = new System.Windows.Forms.Button();
             this.buttonSelectDir = new System.Windows.Forms.Button();
+            this.textBoxSavePath = new System.Windows.Forms.TextBox();
             this.textBoxPath = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBoxSavePath = new System.Windows.Forms.TextBox();
-            this.buttonSelectSavePath = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
@@ -81,6 +80,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "视频批量截图";
+            // 
+            // buttonSelectSavePath
+            // 
+            this.buttonSelectSavePath.Location = new System.Drawing.Point(493, 48);
+            this.buttonSelectSavePath.Name = "buttonSelectSavePath";
+            this.buttonSelectSavePath.Size = new System.Drawing.Size(75, 23);
+            this.buttonSelectSavePath.TabIndex = 10;
+            this.buttonSelectSavePath.Text = "选择目录";
+            this.buttonSelectSavePath.UseVisualStyleBackColor = true;
+            this.buttonSelectSavePath.Click += new System.EventHandler(this.buttonSelectSavePath_Click);
             // 
             // labelProcessStatus
             // 
@@ -145,6 +154,15 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "间隔(秒)";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 47);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(77, 12);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "截图保存路径";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -207,6 +225,13 @@
             this.buttonSelectDir.UseVisualStyleBackColor = true;
             this.buttonSelectDir.Click += new System.EventHandler(this.button1_Click);
             // 
+            // textBoxSavePath
+            // 
+            this.textBoxSavePath.Location = new System.Drawing.Point(87, 47);
+            this.textBoxSavePath.Name = "textBoxSavePath";
+            this.textBoxSavePath.Size = new System.Drawing.Size(396, 21);
+            this.textBoxSavePath.TabIndex = 0;
+            // 
             // textBoxPath
             // 
             this.textBoxPath.Location = new System.Drawing.Point(87, 20);
@@ -223,59 +248,22 @@
             this.fileSystemWatcher1.EnableRaisingEvents = true;
             this.fileSystemWatcher1.SynchronizingObject = this;
             // 
-            // treeView1
+            // button2
             // 
-            this.treeView1.Location = new System.Drawing.Point(28, 189);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(189, 231);
-            this.treeView1.TabIndex = 1;
-            this.treeView1.Visible = false;
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(28, 160);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // textBoxSavePath
-            // 
-            this.textBoxSavePath.Location = new System.Drawing.Point(87, 47);
-            this.textBoxSavePath.Name = "textBoxSavePath";
-            this.textBoxSavePath.Size = new System.Drawing.Size(396, 21);
-            this.textBoxSavePath.TabIndex = 0;
-            // 
-            // buttonSelectSavePath
-            // 
-            this.buttonSelectSavePath.Location = new System.Drawing.Point(493, 48);
-            this.buttonSelectSavePath.Name = "buttonSelectSavePath";
-            this.buttonSelectSavePath.Size = new System.Drawing.Size(75, 23);
-            this.buttonSelectSavePath.TabIndex = 10;
-            this.buttonSelectSavePath.Text = "选择目录";
-            this.buttonSelectSavePath.UseVisualStyleBackColor = true;
-            this.buttonSelectSavePath.Click += new System.EventHandler(this.buttonSelectSavePath_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 47);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(77, 12);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "截图保存路径";
+            this.button2.Location = new System.Drawing.Point(28, 188);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "图片浏览";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(725, 476);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "批量截图工具";
@@ -302,8 +290,6 @@
         private System.IO.FileSystemWatcher fileSystemWatcher1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonSelectFile;
-        private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button buttonBatchShot;
         private System.Windows.Forms.TextBox textBoxDisplaySize;
         private System.Windows.Forms.Label label5;
@@ -311,6 +297,7 @@
         private System.Windows.Forms.Button buttonSelectSavePath;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxSavePath;
+        private System.Windows.Forms.Button button2;
     }
 }
 
