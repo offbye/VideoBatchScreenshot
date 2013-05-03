@@ -264,10 +264,10 @@
             this.label7.ForeColor = System.Drawing.SystemColors.Highlight;
             this.label7.Location = new System.Drawing.Point(26, 165);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(653, 41);
+            this.label7.Size = new System.Drawing.Size(676, 41);
             this.label7.TabIndex = 4;
-            this.label7.Text = "使用说明：本软件可以对目录中的所有视频文件截图，也可以对一个视频文件截图。截图时间点可以输入秒数或时间格式HH:mm:ss; 截图尺寸格式如720x480;如果没" +
-    "有设置截图保存路径，则自动保存在视频文件目录下。";
+            this.label7.Text = "使用说明：本软件可以对目录中的所有视频文件截图，也可以对一个视频文件截图。截图时间点可以输入秒数或时间格式HH:mm:ss; 截图尺寸格式如720x480，如果不" +
+    "输入则按视频原始尺寸截图;如果没有设置截图保存路径，则自动保存在视频文件目录下。";
             // 
             // Form1
             // 

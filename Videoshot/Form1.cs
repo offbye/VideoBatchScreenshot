@@ -21,7 +21,7 @@ namespace Videoshot
        // public const string FFARG = " -i {0}  -y -f image2  -ss {1} -vframes {2}   -loop  -s 400x300  {1}-%2d.jpg ";
         public const string FFARG = " -ss {1}  -i {0}  -y -f image2 -vframes 1 -an  {2}  {3}.jpg ";
 
-        public const string VIDEO_TYPE = "*.avi|*.mp4|*.3gp|*.mpg|*.mpeg|*.dvd|*.flv|*.mov|*.wmv|*.ts|*.mkv|*.f4v|*.hlv";
+        public const string VIDEO_TYPE = "*.avi|*.mp4|*.3gp|*.mpg|*.mpeg|*.dvd|*.flv|*.mov|*.wmv|*.ts|*.mkv|*.f4v|*.hlv|*.dat";
 
         public Form1()
         {
